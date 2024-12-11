@@ -66,7 +66,7 @@ function App() {
 
   return (
     <div>
-      <h1>${userName}のペット</h1>
+      <h1>{userName}のペット</h1>
       {message && <p>{message}</p>}
       {userId && <p>User ID: {userId}</p>}
       <div>

@@ -8,8 +8,11 @@
 }
 
 body {
-  background-image: url("./assets/images/background.png"); /* 画像のパスを指定 */
+  background-image: url("./assets/images/background2.png"); /* 画像のパスを指定 */
   background-size: cover; /* 画面全体に画像をフィット */
   background-repeat: no-repeat; /* 画像を繰り返さない */
   background-position: center; /* 中央に配置 */
+  height: 100vh; /* ビューポート全体を覆う */
+  margin: 0;
+  padding: 0;
 }
