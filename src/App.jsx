@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import scoreApi from "./api/get_score";
 import liff from "@line/liff";
 import "./App.css";
 
 function App() {
   const [userId, setUserId] = useState(""); // ユーザーIDの状態を定義
+  const [score, setScore] = useState(null); // スコア
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -19,12 +21,16 @@ function App() {
           liff
             .getProfile()
             .then((profile) => {
-              console.log(profile);
               setUserId(profile.userId); // ユーザーIDを状態にセット
+              // APIからスコアを取得
+              return scoreApi.get(profile.userId);
+            })
+            .then((data) => {
+              setScore(data.score); // スコアをセット
             })
             .catch((err) => {
-              console.error("Error fetching profile:", err);
-              setError("Failed to fetch user profile.");
+              console.error("Error fetching score:", err);
+              setError(err); // エラーメッセージをセット
             });
         } else {
           liff.login(); // ログインしていない場合はログイン
@@ -38,12 +44,13 @@ function App() {
 
   return (
     <div>
-      <h1>LIFF User ID Example</h1>
-      {message && <p>{message}</p>} {/* 初期化結果メッセージ */}
-      {userId ? (
-        <p>User ID: {userId}</p> // ユーザーIDを表示
+      <h1>LIFF App</h1>
+      {message && <p>{message}</p>}
+      {userId && <p>User ID: {userId}</p>}
+      {score !== null ? (
+        <p>Score: {score}</p>
       ) : (
-        <p>{error || "Loading user profile..."}</p> // エラーまたはロード中メッセージ
+        <p>{error || "Fetching score..."}</p>
       )}
     </div>
   );
