@@ -6,3 +6,10 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+
+body {
+  background-image: url("./assets/images/background.png"); /* 画像のパスを指定 */
+  background-size: cover; /* 画面全体に画像をフィット */
+  background-repeat: no-repeat; /* 画像を繰り返さない */
+  background-position: center; /* 中央に配置 */
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import scoreApi from "./api/get_score";
 import liff from "@line/liff";
-// import "./App.css";
+import "./App.css";
 import condition1 from "./assets/images/condition1.PNG";
 import condition2 from "./assets/images/condition2.PNG";
 import condition3 from "./assets/images/condition3.PNG";
@@ -11,6 +11,7 @@ import condition6 from "./assets/images/condition6.PNG";
 
 function App() {
   const [userId, setUserId] = useState(""); // ユーザーIDの状態を定義
+  const [userName, setUserName] = useState("名無し");
   const [score, setScore] = useState(null); // スコア
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -19,14 +20,16 @@ function App() {
     liff
       .init({
         liffId: import.meta.env.VITE_LIFF_ID,
+        withLoginOnExternalBrowser: true,
       })
       .then(() => {
-        setMessage("LIFF init succeeded."); // 初期化成功メッセージを設定
+        console.log("LIFF init succeeded."); // 初期化成功メッセージを設定
         // LIFFが初期化に成功したらプロファイル情報を取得
         if (liff.isLoggedIn()) {
           liff
             .getProfile()
             .then((profile) => {
+              setUserName(profile.displayName);
               setUserId(profile.userId); // ユーザーIDを状態にセット
               // APIからスコアを取得
               return scoreApi.get(profile.userId);
@@ -44,7 +47,7 @@ function App() {
         }
       })
       .catch((e) => {
-        setMessage("LIFF init failed.");
+        setMessage("LIFFの初期化に失敗しました");
         setError(`${e}`);
       });
   });
@@ -63,11 +66,11 @@ function App() {
 
   return (
     <div>
-      <h1>LIFF App</h1>
+      <h1>${userName}のペット</h1>
       {message && <p>{message}</p>}
       {userId && <p>User ID: {userId}</p>}
       <div>
-        <p>Score: {score !== null ? score : "Not available"}</p>
+        {/* <p>Score: {score !== null ? score : "Not available"}</p> */}
         <img
           src={getImageForScore(score)}
           alt="Score-based image"
