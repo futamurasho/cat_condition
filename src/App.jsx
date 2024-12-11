@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import scoreApi from "./api/get_score";
 import liff from "@line/liff";
 // import "./App.css";
-import condition1 from "./assets/images/condition1.JPG";
-import condition2 from "./assets/images/condition2.JPG";
-import condition3 from "./assets/images/condition3.JPG";
-import condition4 from "./assets/images/condition4.JPG";
-import condition5 from "./assets/images/condition5.JPG";
-import condition6 from "./assets/images/condition6.JPG";
+import condition1 from "./assets/images/condition1.PNG";
+import condition2 from "./assets/images/condition2.PNG";
+import condition3 from "./assets/images/condition3.PNG";
+import condition4 from "./assets/images/condition4.PNG";
+import condition5 from "./assets/images/condition5.PNG";
+import condition6 from "./assets/images/condition6.PNG";
 
 function App() {
   const [userId, setUserId] = useState(""); // ユーザーIDの状態を定義
