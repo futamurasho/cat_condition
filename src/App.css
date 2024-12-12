@@ -90,12 +90,12 @@ body::before {
   margin-bottom: 20px;
   /* 下線を背景として追加 */
   background: url("./assets/images/greenline2.PNG") no-repeat bottom center;
-  background-size: 50%;
+  background-size: 60%;
   padding-bottom: 5px; /* 下線と文字の間隔を調整 */
 }
 
 .pet-image {
-  max-width: 350px; /* イラストの幅を広げる */
+  max-width: 330px; /* イラストの幅を広げる */
   height: auto;
   margin-top: 20px; /* 吹き出しとの距離調整 */
 }
@@ -123,4 +123,58 @@ body::before {
   line-height: 1.4; /* テキストの行間を調整 */
   overflow: hidden; /* はみ出るテキストを隠す */
   word-wrap: break-word; /* テキストが長い場合に改行 */
+}
+
+/* ローディング画面全体の設定 */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ペット画像のアニメーション */
+.pet-animation {
+  display: inline-block;
+  animation: tilt 1s infinite; /* アニメーション設定 */
+}
+
+/* アニメーションの動き */
+@keyframes tilt {
+  0% {
+    transform: rotate(0deg); /* 元の状態 */
+  }
+  25% {
+    transform: rotate(-10deg); /* 左に傾く */
+  }
+  50% {
+    transform: rotate(0deg); /* 元に戻る */
+  }
+  75% {
+    transform: rotate(10deg); /* 右に傾く */
+  }
+  100% {
+    transform: rotate(0deg); /* 元に戻る */
+  }
+}
+
+/* ペット画像 */
+.pet-image {
+  width: 200px;
+  height: auto;
+  display: block; /* 画像を表示 */
+}
+
+/* ロード中のテキスト */
+.loading-text {
+  margin-top: 20px;
+  font-family: "Yomogi", cursive; /* お好きなフォント */
+  font-size: 25px;
+  color: #333;
 }

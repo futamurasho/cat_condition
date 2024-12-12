@@ -98,7 +98,7 @@ async function get_cat(req, res) {
           LIMIT 1`,
       [userId]
     );
-    console.log(healthRows);
+    // console.log(healthRows);
 
     if (healthRows.length === 0) {
       return res.status(200).json({
@@ -126,7 +126,7 @@ async function get_cat(req, res) {
           recordDate.toDateString() === new Date().toDateString()
         )
       : null;
-    console.log(prompt);
+    // console.log(prompt);
 
     // ChatGPT APIにリクエスト
     const comment = commentBool

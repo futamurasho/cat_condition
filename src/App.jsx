@@ -84,46 +84,51 @@ function App() {
 
   const scorePercentage = getScorePercentage(score);
 
-  if (isLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
-  }
-
   return (
     <div>
-      <h1 className="username-title">{userName}のペット</h1>
+      {isLoading && (
+        <div className="loading-container">
+          <p className="loading-text">ロード中...</p>
+          <div className="pet-animation">
+            <img src={condition4} alt="Loading Pet" className="pet-image" />
+          </div>
+        </div>
+      )}
+      {!isLoading && (
+        <div>
+          <h1 className="username-title">{userName}のペット</h1>
 
-      <div className="pet-container">
-        <p className="hp-bar-label">元気度</p>
-        <div className="hp-bar-container">
-          <div
-            className="hp-bar"
-            style={{
-              width: `${scorePercentage}%`,
-              backgroundColor: getBarColor(score),
-            }}
-          ></div>
+          <div className="pet-container">
+            <p className="hp-bar-label">元気度</p>
+            <div className="hp-bar-container">
+              <div
+                className="hp-bar"
+                style={{
+                  width: `${scorePercentage}%`,
+                  backgroundColor: getBarColor(score),
+                }}
+              ></div>
+            </div>
+            <img
+              src={getImageForScore(score)}
+              alt="Score-based image"
+              className="pet-image"
+            />
+            <div className="speech-bubble">
+              {comment !== null ? comment : "コメントがありません"}
+            </div>
+          </div>
         </div>
-        <img
-          src={getImageForScore(score)}
-          alt="Score-based image"
-          className="pet-image"
-        />
-        <div className="speech-bubble">
-          {comment !== null ? comment : "コメントがありません"}
-        </div>
-      </div>
+      )}
     </div>
   );
 }
 
 // function App() {
 //   const [isMock, setIsMock] = useState(true); // モックモードを切り替える
-//   const [userName, setUserName] = useState("テスト");
+//   const [userName, setUserName] = useState("二村翔");
 //   const [score, setScore] = useState(10); // テスト用スコア
+//   const [isLoading, setIsLoading] = useState(true);
 //   const [comment, setComment] = useState(
 //     "朝のパンはふわふわで美味しかったにゃん！"
 //   );
@@ -182,30 +187,47 @@ function App() {
 
 //   const scorePercentage = getScorePercentage(score);
 
+//   // ダミーの非同期処理 (例: 3秒後にロード終了)
+//   setTimeout(() => {
+//     setIsLoading(false);
+//   }, 3000);
+
 //   return (
 //     <div>
-//       <h1 className="username-title">{userName}のペット</h1>
+//       {isLoading && (
+//         <div className="loading-container">
+//           <p className="loading-text">ロード中...</p>
+//           <div className="pet-animation">
+//             <img src={condition4} alt="Loading Pet" className="pet-image" />
+//           </div>
+//         </div>
+//       )}
+//       {!isLoading && (
+//         <div>
+//           <h1 className="username-title">{userName}のペット</h1>
 
-//       <div className="pet-container">
-//         <p className="hp-bar-label">元気度</p>
-//         <div className="hp-bar-container">
-//           <div
-//             className="hp-bar"
-//             style={{
-//               width: `${scorePercentage}%`,
-//               backgroundColor: getBarColor(score),
-//             }}
-//           ></div>
+//           <div className="pet-container">
+//             <p className="hp-bar-label">元気度</p>
+//             <div className="hp-bar-container">
+//               <div
+//                 className="hp-bar"
+//                 style={{
+//                   width: `${scorePercentage}%`,
+//                   backgroundColor: getBarColor(score),
+//                 }}
+//               ></div>
+//             </div>
+//             <img
+//               src={getImageForScore(score)}
+//               alt="Score-based image"
+//               className="pet-image"
+//             />
+//             <div className="speech-bubble">
+//               {comment !== null ? comment : "コメントがありません"}
+//             </div>
+//           </div>
 //         </div>
-//         <img
-//           src={getImageForScore(score)}
-//           alt="Score-based image"
-//           className="pet-image"
-//         />
-//         <div className="speech-bubble">
-//           {comment !== null ? comment : "コメントがありません"}
-//         </div>
-//       </div>
+//       )}
 //     </div>
 //   );
 // }
