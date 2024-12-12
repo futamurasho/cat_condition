@@ -13,6 +13,7 @@ function App() {
   const [userId, setUserId] = useState(""); // ユーザーIDの状態を定義
   const [userName, setUserName] = useState("名無し");
   const [score, setScore] = useState(null); // スコア
+  const [comment, setComment] = useState(""); //キャラのコメント内容
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -36,6 +37,9 @@ function App() {
             })
             .then((data) => {
               setScore(data.score); // スコアをセット
+              setComment(data.comment); //コメントセット
+              console.log(score);
+              console.log(comment);
             })
             .catch((err) => {
               console.error("Error fetching score:", err);
@@ -70,7 +74,8 @@ function App() {
       {message && <p>{message}</p>}
       {userId && <p>User ID: {userId}</p>}
       <div>
-        {/* <p>Score: {score !== null ? score : "Not available"}</p> */}
+        <p>Score: {score !== null ? score : "Not available"}</p>
+        <p>Comment: {comment !== null ? comment : "Not available"}</p>
         <img
           src={getImageForScore(score)}
           alt="Score-based image"
