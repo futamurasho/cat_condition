@@ -77,7 +77,7 @@ function App() {
     return Math.max(0, ((score - minScore) / (maxScore - minScore)) * 100); // パーセンテージに変換
   };
   const getBarColor = (score) => {
-    if (score > 0) return "#4caf50"; // 緑
+    if (score > 0) return "#29aa2d"; // 緑
     if (score > -6) return "#ffeb3b"; // 黄色
     return "#f44336"; // 赤
   };
@@ -94,7 +94,8 @@ function App() {
 
   return (
     <div>
-      <h1>{userName}のペット</h1>
+      <h1 className="username-title">{userName}のペット</h1>
+
       <div className="pet-container">
         <p className="hp-bar-label">元気度</p>
         <div className="hp-bar-container">
@@ -122,7 +123,7 @@ function App() {
 // function App() {
 //   const [isMock, setIsMock] = useState(true); // モックモードを切り替える
 //   const [userName, setUserName] = useState("テスト");
-//   const [score, setScore] = useState(1); // テスト用スコア
+//   const [score, setScore] = useState(10); // テスト用スコア
 //   const [comment, setComment] = useState(
 //     "朝のパンはふわふわで美味しかったにゃん！"
 //   );
@@ -174,7 +175,7 @@ function App() {
 //     return Math.max(0, ((score - minScore) / (maxScore - minScore)) * 100); // パーセンテージに変換
 //   };
 //   const getBarColor = (score) => {
-//     if (score > 0) return "#4caf50"; // 緑
+//     if (score > 0) return "#29aa2d"; // 緑
 //     if (score > -6) return "#ffeb3b"; // 黄色
 //     return "#f44336"; // 赤
 //   };

@@ -9,14 +9,37 @@
   margin-top: 60px;
 }
 
-body {
+/* body {
   background-image: url("./assets/images/background4.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh; /* ビューポート全体を覆う */
+  height: 100vh; 
   margin: 0;
   padding: 0;
+} */
+
+body {
+  background-color: #ffe0c2; /* ベージュの背景 */
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 15px solid #008000; /* 外側の緑の枠 */
+  border-radius: 20px; /* 外側の丸み */
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 5px; /* 内側のスペース */
+  background-color: #ffe0c2; /* 内側の背景色 */
+  border: 2px solid #ffe0c2; /* 内側の緑の枠 */
+  border-radius: 15px; /* 内側の丸み */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* 内側の影で立体感を演出（任意） */
+  z-index: -1; /* 背面に配置 */
 }
 
 .pet-container {
@@ -35,6 +58,10 @@ body {
   font-weight: bold; /* 太字 */
   color: #333; /* テキスト色 */
   margin-bottom: 2px; /* ゲージとの間隔 */
+  /* 下線を背景として追加 */
+  background: url("./assets/images/greenline2.PNG") no-repeat bottom center;
+  background-size: contain;
+  padding-bottom: 5px; /* 下線と文字の間隔を調整 */
 }
 
 /* HPゲージの外枠 */
@@ -61,10 +88,14 @@ body {
   color: #333;
   text-align: center;
   margin-bottom: 20px;
+  /* 下線を背景として追加 */
+  background: url("./assets/images/greenline2.PNG") no-repeat bottom center;
+  background-size: 50%;
+  padding-bottom: 5px; /* 下線と文字の間隔を調整 */
 }
 
 .pet-image {
-  max-width: 330px; /* イラストの幅を広げる */
+  max-width: 350px; /* イラストの幅を広げる */
   height: auto;
   margin-top: 20px; /* 吹き出しとの距離調整 */
 }
