@@ -16,3 +16,34 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.pet-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 20px;
+}
+
+.pet-image {
+  max-width: 200px; /* ペット画像の幅を調整 */
+  height: auto;
+}
+
+.speech-bubble {
+  background: url("./assets/fukidashi_1.png") no-repeat center center;
+  background-size: contain;
+  width: 250px; /* 吹き出しの幅 */
+  height: 100px; /* 吹き出しの高さ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 20px; /* ペット画像の上部に吹き出しを配置 */
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  padding: 10px;
+  box-sizing: border-box;
+}

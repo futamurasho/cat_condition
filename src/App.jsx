@@ -16,6 +16,7 @@ function App() {
   const [comment, setComment] = useState(""); //キャラのコメント内容
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     liff
@@ -38,11 +39,13 @@ function App() {
             .then((data) => {
               setScore(data.score); // スコアをセット
               setComment(data.comment); //コメントセット
+              setIsLoading(false); // ローディング完了
             })
             .catch((err) => {
               console.error("Error fetching score:", err);
               setError(err); // エラーメッセージをセット
               setScore(null); // スコア取得に失敗した場合、nullに設定
+              setIsLoading(false); // ローディング完了
             });
         } else {
           liff.login(); // ログインしていない場合はログイン
@@ -51,37 +54,58 @@ function App() {
       .catch((e) => {
         setMessage("LIFFの初期化に失敗しました");
         setError(`${e}`);
+        setIsLoading(false); // ローディング完了
       });
   }, []);
 
   // スコアに応じた画像の選択
   const getImageForScore = (score) => {
-    if (score === null) return condition3; // スコアが取得できない場合はデフォルト画像
+    if (score === null) return condition4; // スコアが取得できない場合はデフォルト画像
     if (score >= 7 && score <= 10) return condition6;
     if (score >= 4 && score <= 6) return condition5;
     if (score >= 1 && score <= 3) return condition4;
     if (score >= -2 && score <= 0) return condition3;
     if (score >= -5 && score <= -3) return condition2;
     if (score >= -9 && score <= -6) return condition1;
-    return condition3; // その他の場合もデフォルト画像
+    return condition4; // その他の場合もデフォルト画像
   };
 
-  return (
-    <div>
-      <h1>{userName}のペット</h1>
-      {message && <p>{message}</p>}
-      {userId && <p>User ID: {userId}</p>}
+  if (isLoading) {
+    return (
       <div>
-        <p>Score: {score !== null ? score : "Not available"}</p>
-        <p>Comment: {comment !== null ? comment : "Not available"}</p>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {/* <div>
+        <h1>{userName}のペット</h1>
+        {message && <p>{message}</p>}
+        {userId && <p>User ID: {userId}</p>}
+        <div>
+          <p>Score: {score !== null ? score : "Not available"}</p>
+          <p>Comment: {comment !== null ? comment : "Not available"}</p>
+          <img
+            src={getImageForScore(score)}
+            alt="Score-based image"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+        </div>
+        {error && <p>Error: {error.toString()}</p>}
+      </div> */}
+      <div className="pet-container">
         <img
           src={getImageForScore(score)}
           alt="Score-based image"
-          style={{ maxWidth: "100%", height: "auto" }}
+          className="pet-image"
         />
+        <div className="speech-bubble">
+          {comment !== null ? comment : "コメントがありません"}
+        </div>
       </div>
-      {error && <p>Error: {error.toString()}</p>}
-    </div>
+    </>
   );
 }
 
