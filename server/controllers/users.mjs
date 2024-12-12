@@ -65,7 +65,7 @@ function createPrompt(date, breakfast, lunch, dinner, isToday) {
       以下はユーザーの${dayLabel}の食事記録です:
       ${mealDescriptions}
       この食事記録の朝食、昼食、夕食のうちからランダムに一つ選び、その内容について猫のキャラクターとして30文字以内にコメントしてください。
-      コメント例:「${dayLabel}食べたハンバーグはジューシーで美味しかったにゃん！！」
+      コメント例:${dayLabel}食べたハンバーグはジューシーで美味しかったにゃん！！
     `;
 }
 

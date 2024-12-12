@@ -79,22 +79,8 @@ function App() {
   }
 
   return (
-    <>
-      {/* <div>
-        <h1>{userName}のペット</h1>
-        {message && <p>{message}</p>}
-        {userId && <p>User ID: {userId}</p>}
-        <div>
-          <p>Score: {score !== null ? score : "Not available"}</p>
-          <p>Comment: {comment !== null ? comment : "Not available"}</p>
-          <img
-            src={getImageForScore(score)}
-            alt="Score-based image"
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
-        </div>
-        {error && <p>Error: {error.toString()}</p>}
-      </div> */}
+    <div>
+      <h1>{userName}のペット</h1>
       <div className="pet-container">
         <img
           src={getImageForScore(score)}
@@ -105,8 +91,76 @@ function App() {
           {comment !== null ? comment : "コメントがありません"}
         </div>
       </div>
-    </>
+    </div>
   );
 }
+
+// function App() {
+//   const [isMock, setIsMock] = useState(true); // モックモードを切り替える
+//   const [userName, setUserName] = useState("テスト");
+//   const [score, setScore] = useState(10); // テスト用スコア
+//   const [comment, setComment] = useState(
+//     "朝のパンはふわふわで美味しかったにゃん！"
+//   );
+
+//   useEffect(() => {
+//     if (!isMock) {
+//       // 本番モードならLINEログイン処理
+//       import("@line/liff").then((liff) => {
+//         liff
+//           .init({
+//             liffId: import.meta.env.VITE_LIFF_ID,
+//             withLoginOnExternalBrowser: true,
+//           })
+//           .then(() => {
+//             console.log("LIFF init succeeded.");
+//             if (liff.isLoggedIn()) {
+//               liff.getProfile().then((profile) => {
+//                 setUserName(profile.displayName);
+//                 setScore(7); // 仮のAPIリクエスト結果
+//                 setComment("ログイン後のコメントです。");
+//               });
+//             } else {
+//               liff.login();
+//             }
+//           })
+//           .catch((err) => {
+//             console.error("Error initializing LIFF:", err);
+//           });
+//       });
+//     }
+//   }, [isMock]);
+
+//   // スコアに応じた画像の選択
+//   const getImageForScore = (score) => {
+//     if (score === null) return condition3; // デフォルト画像
+//     if (score >= 7 && score <= 10) return condition6;
+//     if (score >= 4 && score <= 6) return condition5;
+//     if (score >= 1 && score <= 3) return condition4;
+//     if (score >= -2 && score <= 0) return condition3;
+//     if (score >= -5 && score <= -3) return condition2;
+//     if (score >= -9 && score <= -6) return condition1;
+//     return condition3; // その他
+//   };
+
+//   return (
+//     <div>
+//       <h1>
+//         {/* {isMock ? "テストモード: " : ""} */}
+//         {userName}のペット
+//       </h1>
+//       <div className="pet-container">
+//         <img
+//           src={getImageForScore(score)}
+//           alt="Score-based image"
+//           className="pet-image"
+//         />
+//         <div className="speech-bubble">
+//           {comment !== null ? comment : "コメントがありません"}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 export default App;

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Yomogi&display=swap");
+
 .App {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -8,10 +10,10 @@
 }
 
 body {
-  background-image: url("./assets/images/background2.png"); /* 画像のパスを指定 */
-  background-size: cover; /* 画面全体に画像をフィット */
-  background-repeat: no-repeat; /* 画像を繰り返さない */
-  background-position: center; /* 中央に配置 */
+  background-image: url("./assets/images/background2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 100vh; /* ビューポート全体を覆う */
   margin: 0;
   padding: 0;
@@ -23,27 +25,36 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .pet-image {
-  max-width: 200px; /* ペット画像の幅を調整 */
+  max-width: 330px; /* イラストの幅を広げる */
   height: auto;
+  margin-top: 20px; /* 吹き出しとの距離調整 */
 }
 
 .speech-bubble {
-  background: url("./assets/fukidashi_1.png") no-repeat center center;
+  background: url("./assets/images/fukidashi_1.png") no-repeat center center;
   background-size: contain;
-  width: 250px; /* 吹き出しの幅 */
-  height: 100px; /* 吹き出しの高さ */
+  width: 330px; /* 吹き出しの幅を広げる */
+  height: 200px; /* 吹き出しの高さを調整 */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* 縦方向中央揃え */
+  justify-content: center; /* 横方向中央揃え */
   position: absolute;
-  top: 20px; /* ペット画像の上部に吹き出しを配置 */
+  top: 100%; /* ペット画像の真下に配置 */
+  left: 50%; /* 横方向中央揃え */
+  transform: translateX(-50%); /* 中央揃え補正 */
   text-align: center;
-  font-size: 14px;
+  font-family: "Yomogi", cursive;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 20px; /* フォントサイズを大きく */
   color: #333;
-  padding: 10px;
+  padding: 60px 20px 10px;
   box-sizing: border-box;
+  line-height: 1.4; /* テキストの行間を調整 */
+  overflow: hidden; /* はみ出るテキストを隠す */
+  word-wrap: break-word; /* テキストが長い場合に改行 */
 }
