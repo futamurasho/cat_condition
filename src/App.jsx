@@ -38,8 +38,6 @@ function App() {
             .then((data) => {
               setScore(data.score); // スコアをセット
               setComment(data.comment); //コメントセット
-              console.log(score);
-              console.log(comment);
             })
             .catch((err) => {
               console.error("Error fetching score:", err);
@@ -54,7 +52,7 @@ function App() {
         setMessage("LIFFの初期化に失敗しました");
         setError(`${e}`);
       });
-  });
+  }, []);
 
   // スコアに応じた画像の選択
   const getImageForScore = (score) => {
