@@ -10,7 +10,7 @@
 }
 
 body {
-  background-image: url("./assets/images/background2.png");
+  background-image: url("./assets/images/background4.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -26,6 +26,41 @@ body {
   justify-content: center;
   position: relative;
   margin-top: 50px;
+}
+
+/* HPゲージラベル */
+.hp-bar-label {
+  font-family: "Yomogi", cursive;
+  font-size: 20px; /* フォントサイズ */
+  font-weight: bold; /* 太字 */
+  color: #333; /* テキスト色 */
+  margin-bottom: 2px; /* ゲージとの間隔 */
+}
+
+/* HPゲージの外枠 */
+.hp-bar-container {
+  width: 80%; /* 外枠の幅 */
+  height: 20px; /* 外枠の高さ */
+  background-color: #e0e0e0; /* 外枠の背景色 */
+  border-radius: 10px; /* 外枠の角丸 */
+  margin: 10px auto; /* 上下中央揃え */
+  overflow: hidden; /* 内容がはみ出ないようにする */
+  position: relative;
+  border: 1px solid #ccc; /* 枠線 */
+}
+
+/* HPゲージの中身 */
+.hp-bar {
+  height: 100%; /* 外枠の高さに合わせる */
+  transition: width 0.3s ease; /* ゲージの動きにアニメーションを追加 */
+}
+
+.username-title {
+  font-family: "Yomogi", cursive;
+  font-size: 24px; /* 必要に応じて調整 */
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .pet-image {

@@ -70,6 +70,20 @@ function App() {
     return condition4; // その他の場合もデフォルト画像
   };
 
+  const getScorePercentage = (score) => {
+    // スコアの割合を計算（例: スコア -9 ~ 10）
+    const minScore = -9;
+    const maxScore = 10;
+    return Math.max(0, ((score - minScore) / (maxScore - minScore)) * 100); // パーセンテージに変換
+  };
+  const getBarColor = (score) => {
+    if (score > 0) return "#4caf50"; // 緑
+    if (score > -6) return "#ffeb3b"; // 黄色
+    return "#f44336"; // 赤
+  };
+
+  const scorePercentage = getScorePercentage(score);
+
   if (isLoading) {
     return (
       <div>
@@ -82,6 +96,16 @@ function App() {
     <div>
       <h1>{userName}のペット</h1>
       <div className="pet-container">
+        <p className="hp-bar-label">元気度</p>
+        <div className="hp-bar-container">
+          <div
+            className="hp-bar"
+            style={{
+              width: `${scorePercentage}%`,
+              backgroundColor: getBarColor(score),
+            }}
+          ></div>
+        </div>
         <img
           src={getImageForScore(score)}
           alt="Score-based image"
@@ -98,7 +122,7 @@ function App() {
 // function App() {
 //   const [isMock, setIsMock] = useState(true); // モックモードを切り替える
 //   const [userName, setUserName] = useState("テスト");
-//   const [score, setScore] = useState(10); // テスト用スコア
+//   const [score, setScore] = useState(1); // テスト用スコア
 //   const [comment, setComment] = useState(
 //     "朝のパンはふわふわで美味しかったにゃん！"
 //   );
@@ -143,13 +167,35 @@ function App() {
 //     return condition3; // その他
 //   };
 
+//   const getScorePercentage = (score) => {
+//     // スコアの割合を計算（例: スコア -9 ~ 10）
+//     const minScore = -9;
+//     const maxScore = 10;
+//     return Math.max(0, ((score - minScore) / (maxScore - minScore)) * 100); // パーセンテージに変換
+//   };
+//   const getBarColor = (score) => {
+//     if (score > 0) return "#4caf50"; // 緑
+//     if (score > -6) return "#ffeb3b"; // 黄色
+//     return "#f44336"; // 赤
+//   };
+
+//   const scorePercentage = getScorePercentage(score);
+
 //   return (
 //     <div>
-//       <h1>
-//         {/* {isMock ? "テストモード: " : ""} */}
-//         {userName}のペット
-//       </h1>
+//       <h1 className="username-title">{userName}のペット</h1>
+
 //       <div className="pet-container">
+//         <p className="hp-bar-label">元気度</p>
+//         <div className="hp-bar-container">
+//           <div
+//             className="hp-bar"
+//             style={{
+//               width: `${scorePercentage}%`,
+//               backgroundColor: getBarColor(score),
+//             }}
+//           ></div>
+//         </div>
 //         <img
 //           src={getImageForScore(score)}
 //           alt="Score-based image"
