@@ -87,8 +87,7 @@ body::before {
 }
 
 .pet-image {
-  min-width: 340px;
-  width: 100%;
+  max-width: 330px; /* イラストの幅を広げる */
   height: auto;
   margin-top: 20px; /* 吹き出しとの距離調整 */
 }
@@ -158,7 +157,7 @@ body::before {
 }
 
 /* ペット画像 */
-.pet-image {
+.pet-loadingimage {
   width: 200px;
   height: auto;
   display: block; /* 画像を表示 */
