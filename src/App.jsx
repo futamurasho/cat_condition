@@ -124,7 +124,11 @@ function App() {
         <div className="loading-container">
           <p className="loading-text">ロード中...</p>
           <div className="pet-animation">
-            <img src={condition4} alt="Loading Pet" className="pet-image" />
+            <img
+              src={condition4}
+              alt="Loading Pet"
+              className="pet-loadingimage"
+            />
           </div>
         </div>
       )}
