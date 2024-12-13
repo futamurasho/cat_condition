@@ -13,9 +13,9 @@ function App() {
   const [userId, setUserId] = useState(""); // ユーザーIDの状態を定義
   const [userName, setUserName] = useState("名無し");
   const [score, setScore] = useState(null); // スコア
-  const [comment, setComment] = useState(""); //キャラのコメント内容
   const [comments, setComments] = useState([]); //キャラのコメント内容
   const [displayedComment, setDisplayedComment] = useState(""); // 表示されるコメント
+  const [isTyping, setIsTyping] = useState(false); // タイピング中のフラグ
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -97,6 +97,8 @@ function App() {
 
   // 吹き出しをタップした際に実行
   const handleSpeechBubbleClick = () => {
+    if (isTyping) return; // タイピング中は何もしない
+    setIsTyping(true); // タイピングを開始
     const newComment = getRandomComment(); // ランダムにコメントを取得
     console.log(newComment);
     let localComment = "";
@@ -111,10 +113,9 @@ function App() {
         index++;
       } else {
         clearInterval(interval); // 全文字表示後、インターバルを停止
+        setIsTyping(false); // タイピング終了
       }
     }, 100); // 文字表示間隔（ミリ秒）
-
-    return () => clearInterval(interval);
   };
 
   return (
@@ -149,7 +150,7 @@ function App() {
               onClick={handleSpeechBubbleClick}
             />
             <div className="speech-bubble" onClick={handleSpeechBubbleClick}>
-              {displayedComment || "吹き出しをタップしてコメントを表示"}
+              {displayedComment || "こんにちはにゃん!"}
             </div>
           </div>
         </div>
@@ -168,6 +169,7 @@ function App() {
 //     "お昼のうどんがつるつるで最高だったにゃん！",
 //     "夜の魚の煮付けはとても健康的だったにゃん！",
 //   ]);
+//   const [isTyping, setIsTyping] = useState(false); // タイピング中のフラグ
 //   const [displayedComment, setDisplayedComment] = useState(""); // 表示されるコメント
 
 //   // ランダムなコメントを取得
@@ -178,6 +180,8 @@ function App() {
 
 //   // 吹き出しをタップした際に実行
 //   const handleSpeechBubbleClick = () => {
+//     if (isTyping) return;
+//     setIsTyping(true); // タイピングを開始
 //     const newComment = getRandomComment(); // ランダムにコメントを取得
 //     console.log(newComment);
 //     let localComment = "";
@@ -192,6 +196,7 @@ function App() {
 //         index++;
 //       } else {
 //         clearInterval(interval); // 全文字表示後、インターバルを停止
+//         setIsTyping(false); // タイピング終了
 //       }
 //     }, 100); // 文字表示間隔（ミリ秒）
 //   };
