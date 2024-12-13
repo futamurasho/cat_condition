@@ -25,7 +25,7 @@ async function getCompletion(prompt, maxRetries = 3) {
         model: "gpt-4o-mini",
       });
 
-      console.log(response.choices[0].message.content);
+      // console.log(response.choices[0].message.content);
       const content = response.choices[0].message.content.trim();
 
       // ChatGPTの応答をJSONとして解析
@@ -183,7 +183,7 @@ async function get_cat(req, res) {
           recordDate.toDateString() === new Date().toDateString()
         )
       : createPrompt0(score);
-    console.log(prompt);
+    // console.log(prompt);
 
     // ChatGPT APIにリクエスト
     const comments = await getCompletion(prompt);

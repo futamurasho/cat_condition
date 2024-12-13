@@ -87,7 +87,8 @@ body::before {
 }
 
 .pet-image {
-  max-width: 350px; /* イラストの幅を広げる */
+  min-width: 340px;
+  width: 100%;
   height: auto;
   margin-top: 20px; /* 吹き出しとの距離調整 */
 }
