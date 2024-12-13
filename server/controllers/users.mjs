@@ -127,7 +127,7 @@ async function get_cat(req, res) {
     //score,user_idが取得されない場合
     if (scoreRows.length === 0) {
       return res.status(200).json({
-        score: 4,
+        score: 1,
         comments: [
           "初めましてにゃん!",
           "いっぱい世話してほしいのにゃ",
