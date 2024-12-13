@@ -14,6 +14,8 @@ function App() {
   const [userName, setUserName] = useState("名無し");
   const [score, setScore] = useState(null); // スコア
   const [comment, setComment] = useState(""); //キャラのコメント内容
+  const [comments, setComments] = useState([]); //キャラのコメント内容
+  const [displayedComment, setDisplayedComment] = useState(""); // 表示されるコメント
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +40,7 @@ function App() {
             })
             .then((data) => {
               setScore(data.score); // スコアをセット
-              setComment(data.comment); //コメントセット
+              setComments(data.comments); //コメントセット
               setIsLoading(false); // ローディング完了
             })
             .catch((err) => {
@@ -84,6 +86,37 @@ function App() {
 
   const scorePercentage = getScorePercentage(score);
 
+  // ランダムなコメントを取得
+  const getRandomComment = () => {
+    if (comments.length === 0) {
+      return "コメントがありませんにゃん！"; // デフォルトコメント
+    }
+    const randomIndex = Math.floor(Math.random() * comments.length);
+    return comments[randomIndex];
+  };
+
+  // 吹き出しをタップした際に実行
+  const handleSpeechBubbleClick = () => {
+    const newComment = getRandomComment(); // ランダムにコメントを取得
+    console.log(newComment);
+    let localComment = "";
+    setDisplayedComment(""); // 表示中のコメントをリセット
+
+    // 1文字ずつ表示
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < newComment.length) {
+        localComment += newComment[index];
+        setDisplayedComment(localComment);
+        index++;
+      } else {
+        clearInterval(interval); // 全文字表示後、インターバルを停止
+      }
+    }, 100); // 文字表示間隔（ミリ秒）
+
+    return () => clearInterval(interval);
+  };
+
   return (
     <div>
       {isLoading && (
@@ -113,9 +146,10 @@ function App() {
               src={getImageForScore(score)}
               alt="Score-based image"
               className="pet-image"
+              onClick={handleSpeechBubbleClick}
             />
-            <div className="speech-bubble">
-              {comment !== null ? comment : "コメントがありません"}
+            <div className="speech-bubble" onClick={handleSpeechBubbleClick}>
+              {displayedComment || "吹き出しをタップしてコメントを表示"}
             </div>
           </div>
         </div>
@@ -129,9 +163,38 @@ function App() {
 //   const [userName, setUserName] = useState("二村翔");
 //   const [score, setScore] = useState(10); // テスト用スコア
 //   const [isLoading, setIsLoading] = useState(true);
-//   const [comment, setComment] = useState(
-//     "朝のパンはふわふわで美味しかったにゃん！"
-//   );
+//   const [comments, setComments] = useState([
+//     "朝のパンはふわふわで美味しかったにゃん！",
+//     "お昼のうどんがつるつるで最高だったにゃん！",
+//     "夜の魚の煮付けはとても健康的だったにゃん！",
+//   ]);
+//   const [displayedComment, setDisplayedComment] = useState(""); // 表示されるコメント
+
+//   // ランダムなコメントを取得
+//   const getRandomComment = () => {
+//     const randomIndex = Math.floor(Math.random() * comments.length);
+//     return comments[randomIndex];
+//   };
+
+//   // 吹き出しをタップした際に実行
+//   const handleSpeechBubbleClick = () => {
+//     const newComment = getRandomComment(); // ランダムにコメントを取得
+//     console.log(newComment);
+//     let localComment = "";
+//     setDisplayedComment(""); // 表示中のコメントをリセット
+
+//     // 1文字ずつ表示
+//     let index = 0;
+//     const interval = setInterval(() => {
+//       if (index < newComment.length) {
+//         localComment += newComment[index];
+//         setDisplayedComment(localComment);
+//         index++;
+//       } else {
+//         clearInterval(interval); // 全文字表示後、インターバルを停止
+//       }
+//     }, 100); // 文字表示間隔（ミリ秒）
+//   };
 
 //   useEffect(() => {
 //     if (!isMock) {
@@ -205,7 +268,6 @@ function App() {
 //       {!isLoading && (
 //         <div>
 //           <h1 className="username-title">{userName}のペット</h1>
-
 //           <div className="pet-container">
 //             <p className="hp-bar-label">元気度</p>
 //             <div className="hp-bar-container">
@@ -221,9 +283,10 @@ function App() {
 //               src={getImageForScore(score)}
 //               alt="Score-based image"
 //               className="pet-image"
+//               onClick={handleSpeechBubbleClick}
 //             />
-//             <div className="speech-bubble">
-//               {comment !== null ? comment : "コメントがありません"}
+//             <div className="speech-bubble" onClick={handleSpeechBubbleClick}>
+//               {displayedComment || "吹き出しをタップしてコメントを表示"}
 //             </div>
 //           </div>
 //         </div>

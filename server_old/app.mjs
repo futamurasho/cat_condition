@@ -1,7 +1,7 @@
 import express from "express";
+import path from "path";
 import apiRoute from "./api-routes/index.mjs";
 import env from "dotenv";
-import path from "path";
 env.config();
 
 const app = express();
