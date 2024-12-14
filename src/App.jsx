@@ -157,6 +157,7 @@ function App() {
             <div className="speech-bubble" onClick={handleSpeechBubbleClick}>
               {displayedComment || "こんにちはにゃん!"}
             </div>
+            <h>user_id:{userId}</h>
           </div>
         </div>
       )}
