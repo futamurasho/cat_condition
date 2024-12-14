@@ -35,7 +35,7 @@ function App() {
             .then((profile) => {
               setUserName(profile.displayName);
               setUserId(profile.userId); // ユーザーIDを状態にセット
-              console.log(`${userName}のuser_idは${userId}`);
+              console.log(`${profile.displayName}のuser_idは${profile.userId}`);
               // APIからスコアを取得
               return scoreApi.get(profile.userId);
             })
